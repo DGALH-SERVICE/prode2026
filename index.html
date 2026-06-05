@@ -755,7 +755,7 @@ async function login(usuario, pass) {
 
 async function cargarDatos() {
   const db = window._db;
-  const { doc, getDoc } = window._firebase;
+  const { doc, getDoc, onSnapshot } = window._firebase;
 
   const pSnap = await getDoc(doc(db, "predicciones", currentUser.id));
   prediccionesCache = pSnap.exists() ? pSnap.data() : {};
@@ -763,8 +763,18 @@ async function cargarDatos() {
   const rSnap = await getDoc(doc(db, "resultados", "oficial"));
   resultadosCache = rSnap.exists() ? rSnap.data() : {};
 
-  const cfgSnap = await getDoc(doc(db, "config", "predicciones"));
-  predAbiertoCache = cfgSnap.exists() ? cfgSnap.data().abierto : true;
+  // Escucha en tiempo real el estado de predicciones
+  // Si el admin cierra/abre, se aplica instantáneamente sin recargar
+  onSnapshot(doc(db, "config", "predicciones"), (snap) => {
+    const nuevoEstado = snap.exists() ? snap.data().abierto : true;
+    if (nuevoEstado !== predAbiertoCache) {
+      predAbiertoCache = nuevoEstado;
+      const tabActiva = document.querySelector("nav.tabs a.active");
+      if (tabActiva && tabActiva.dataset.tab === "predicciones") {
+        renderPredicciones();
+      }
+    }
+  });
 }
 
 // ---- PREDICCIONES ----
