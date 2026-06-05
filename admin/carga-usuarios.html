@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carga Masiva — Prode Mundial 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<!-- SheetJS para leer Excel -->
 <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
-<!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, doc, setDoc, writeBatch, collection }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
   const firebaseConfig = {
     apiKey: "AIzaSyAMDteMBM57J9tBYBo-97gbtaC0jFnGOdo",
     authDomain: "prode-mundial-2026-853a5.firebaseapp.com",
@@ -37,47 +34,28 @@
   --gris1:#1a1a1a; --gris2:#252525; --gris3:#333; --gris4:#666; --blanco:#f0f0f0;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--negro);color:var(--blanco);font-family:'Barlow',sans-serif;
-  min-height:100vh;padding:32px 24px;}
-
+body{background:var(--negro);color:var(--blanco);font-family:'Barlow',sans-serif;min-height:100vh;padding:32px 24px;}
 header{margin-bottom:40px;}
 header h1{font-family:'Bebas Neue',cursive;font-size:2.8rem;color:var(--blanco);letter-spacing:3px;line-height:1;}
 header h1 span{color:var(--verde);}
-header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:4px;
-  text-transform:uppercase;color:var(--gris4);margin-top:4px;}
-
+header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gris4);margin-top:4px;}
 .layout{display:grid;grid-template-columns:340px 1fr;gap:24px;max-width:1200px;}
 @media(max-width:900px){.layout{grid-template-columns:1fr;}}
-
-/* PANEL IZQUIERDO */
 .panel{background:var(--gris1);border:1px solid var(--gris3);border-radius:12px;padding:24px;}
-.panel-title{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;
-  color:var(--verde);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gris3);}
-
-/* STEPS */
+.panel-title{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;color:var(--verde);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gris3);}
 .step{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--verde);color:var(--negro);
-  font-family:'Bebas Neue',cursive;font-size:1rem;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--verde);color:var(--negro);font-family:'Bebas Neue',cursive;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .step-num.done{background:var(--gris3);}
 .step-num.active{box-shadow:0 0 0 3px rgba(0,200,83,.3);}
-.step-content h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;
-  margin-bottom:4px;}
+.step-content h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:4px;}
 .step-content p{font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:var(--gris4);line-height:1.4;}
-
-/* DROP ZONE */
-.dropzone{border:2px dashed var(--gris3);border-radius:10px;padding:32px 20px;
-  text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;}
+.dropzone{border:2px dashed var(--gris3);border-radius:10px;padding:32px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;}
 .dropzone:hover,.dropzone.drag{border-color:var(--verde);background:#0a1a0a;}
 .dropzone .icon{font-size:2.5rem;margin-bottom:8px;}
 .dropzone p{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:var(--gris4);}
 .dropzone strong{color:var(--blanco);display:block;font-size:1rem;}
 #file-input{display:none;}
-
-/* GMAIL AUTH */
-.gmail-btn{width:100%;background:var(--gris2);border:1px solid var(--gris3);border-radius:8px;
-  padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;
-  margin-bottom:12px;}
+.gmail-btn{width:100%;background:var(--gris2);border:1px solid var(--gris3);border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;margin-bottom:12px;}
 .gmail-btn:hover{border-color:var(--azul);}
 .gmail-btn .gmail-icon{font-size:1.4rem;}
 .gmail-btn div{text-align:left;}
@@ -85,66 +63,35 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
 .gmail-btn span{font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;color:var(--gris4);}
 .gmail-btn.connected{border-color:var(--verde);background:#0a1a0a;}
 .gmail-btn.connected strong{color:var(--verde);}
-
-/* BOTÓN PRINCIPAL */
-.btn-main{width:100%;background:var(--verde);color:var(--negro);border:none;border-radius:8px;
-  padding:14px;font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;
-  cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-main{width:100%;background:var(--verde);color:var(--negro);border:none;border-radius:8px;padding:14px;font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;cursor:pointer;transition:all .2s;margin-top:8px;}
 .btn-main:hover{background:var(--verde2);}
 .btn-main:disabled{background:var(--gris3);color:var(--gris4);cursor:not-allowed;}
-
-/* PANEL DERECHO — TABLA */
 .tabla-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
 .tabla-header h3{font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:2px;color:var(--blanco);}
-.count-badge{background:var(--gris2);border:1px solid var(--gris3);border-radius:20px;
-  padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;color:var(--verde);}
-
+.count-badge{background:var(--gris2);border:1px solid var(--gris3);border-radius:20px;padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;color:var(--verde);}
 .data-table{width:100%;border-collapse:collapse;}
-.data-table th{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:2px;
-  text-transform:uppercase;color:var(--gris4);padding:10px 12px;text-align:left;
-  border-bottom:1px solid var(--gris3);position:sticky;top:0;background:var(--gris1);}
-.data-table td{padding:9px 12px;border-bottom:1px solid var(--gris2);
-  font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;}
+.data-table th{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gris4);padding:10px 12px;text-align:left;border-bottom:1px solid var(--gris3);position:sticky;top:0;background:var(--gris1);}
+.data-table td{padding:9px 12px;border-bottom:1px solid var(--gris2);font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;}
 .data-table tr:hover td{background:var(--gris2);}
 .pin-cell{font-family:'Bebas Neue',cursive;font-size:1.1rem;color:var(--oro);letter-spacing:1px;}
 .email-cell{color:var(--gris4);font-size:0.82rem;}
-
-.table-wrap{background:var(--gris1);border:1px solid var(--gris3);border-radius:12px;
-  overflow:auto;max-height:500px;}
-
-/* ESTADO DE ENVÍO */
+.table-wrap{background:var(--gris1);border:1px solid var(--gris3);border-radius:12px;overflow:auto;max-height:500px;}
 .row-status{width:24px;text-align:center;}
 .status-ok{color:var(--verde);}
 .status-err{color:var(--rojo);}
 .status-pending{color:var(--gris4);}
 .status-sending{color:var(--oro);}
-
-/* PROGRESS */
 .progress-bar-wrap{background:var(--gris2);border-radius:4px;height:6px;margin:16px 0;overflow:hidden;}
 .progress-bar{height:100%;background:var(--verde);border-radius:4px;transition:width .3s;width:0%;}
-
-/* LOG */
-.log-box{background:var(--gris2);border:1px solid var(--gris3);border-radius:8px;
-  padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;
-  max-height:140px;overflow-y:auto;margin-top:12px;line-height:1.6;}
+.log-box{background:var(--gris2);border:1px solid var(--gris3);border-radius:8px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;max-height:140px;overflow-y:auto;margin-top:12px;line-height:1.6;}
 .log-ok{color:var(--verde);}
 .log-err{color:var(--rojo);}
 .log-info{color:var(--gris4);}
-
-/* BTN DESCARGA */
-.btn-secondary{background:var(--gris2);border:1px solid var(--gris3);color:var(--blanco);
-  border-radius:6px;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:0.85rem;cursor:pointer;transition:all .2s;}
+.btn-secondary{background:var(--gris2);border:1px solid var(--gris3);color:var(--blanco);border-radius:6px;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all .2s;}
 .btn-secondary:hover{border-color:var(--verde);color:var(--verde);}
-
-/* TEMPLATE HINT */
-.hint{background:var(--gris2);border-left:3px solid var(--oro);border-radius:0 6px 6px 0;
-  padding:10px 14px;margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;
-  color:var(--gris4);line-height:1.5;}
+.hint{background:var(--gris2);border-left:3px solid var(--oro);border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:var(--gris4);line-height:1.5;}
 .hint strong{color:var(--oro);display:block;margin-bottom:2px;}
-
-.empty-state{text-align:center;padding:60px 20px;color:var(--gris4);
-  font-family:'Barlow Condensed',sans-serif;}
+.empty-state{text-align:center;padding:60px 20px;color:var(--gris4);font-family:'Barlow Condensed',sans-serif;}
 .empty-state .icon{font-size:3rem;margin-bottom:12px;}
 </style>
 </head>
@@ -156,13 +103,10 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
 </header>
 
 <div class="layout">
-
-  <!-- PANEL IZQUIERDO -->
   <div>
     <div class="panel" style="margin-bottom:16px;">
       <div class="panel-title">PASOS</div>
 
-      <!-- STEP 1: Excel -->
       <div class="step">
         <div class="step-num active" id="num1">1</div>
         <div class="step-content">
@@ -188,7 +132,6 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
         ⬇ Descargar plantilla Excel
       </button>
 
-      <!-- STEP 2: Gmail -->
       <div class="step">
         <div class="step-num" id="num2">2</div>
         <div class="step-content">
@@ -205,7 +148,6 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
         </div>
       </div>
 
-      <!-- STEP 3: Ejecutar -->
       <div class="step">
         <div class="step-num" id="num3">3</div>
         <div class="step-content">
@@ -223,14 +165,12 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
       </div>
       <div class="log-box" id="log-box" style="display:none"></div>
 
-      <!-- Descarga respaldo -->
       <button class="btn-secondary" id="btn-download" style="width:100%;margin-top:12px;display:none">
         ⬇ Descargar Excel con PINs
       </button>
     </div>
   </div>
 
-  <!-- PANEL DERECHO -->
   <div>
     <div class="tabla-header">
       <h3>PREVISUALIZACIÓN</h3>
@@ -255,17 +195,25 @@ header p{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spac
       </table>
     </div>
   </div>
-
 </div>
 
 <script>
 // =====================================================
-//  GMAIL CONFIG — OAuth2 con Google Identity Services
+//  GMAIL CONFIG — reemplazá con tu Client ID
 // =====================================================
-const GMAIL_CLIENT_ID = "311642186090-mr89pq7nmcduq3unfk223ksrfabjjbmq.apps.googleusercontent.com"; // ← reemplazar
+const GMAIL_CLIENT_ID = "311642186090-mr89pq7nmcduq3unfk223ksrfabjjbmq.apps.googleusercontent.com";
 const GMAIL_SCOPE = "https://www.googleapis.com/auth/gmail.send";
 let gmailToken = null;
 let usuarios = [];
+
+// ---- HASH PIN ----
+async function hashPin(pin) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(pin);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
 
 // ---- GMAIL OAUTH ----
 function iniciarGmail() {
@@ -300,16 +248,9 @@ function pedirToken() {
 }
 
 // ---- LEER EXCEL ----
-document.getElementById("dropzone").addEventListener("click", () => {
-  document.getElementById("file-input").click();
-});
-document.getElementById("dropzone").addEventListener("dragover", (e) => {
-  e.preventDefault();
-  document.getElementById("dropzone").classList.add("drag");
-});
-document.getElementById("dropzone").addEventListener("dragleave", () => {
-  document.getElementById("dropzone").classList.remove("drag");
-});
+document.getElementById("dropzone").addEventListener("click", () => document.getElementById("file-input").click());
+document.getElementById("dropzone").addEventListener("dragover", (e) => { e.preventDefault(); document.getElementById("dropzone").classList.add("drag"); });
+document.getElementById("dropzone").addEventListener("dragleave", () => document.getElementById("dropzone").classList.remove("drag"));
 document.getElementById("dropzone").addEventListener("drop", (e) => {
   e.preventDefault();
   document.getElementById("dropzone").classList.remove("drag");
@@ -327,10 +268,8 @@ function procesarArchivo(file) {
       const wb = XLSX.read(e.target.result, { type: "binary" });
       const ws = wb.Sheets[wb.SheetNames[0]];
       const data = XLSX.utils.sheet_to_json(ws, { defval: "" });
-
       if (!data.length) { alert("El archivo está vacío."); return; }
 
-      // Detectar columnas (case insensitive)
       const keys = Object.keys(data[0]);
       const findKey = (variants) => keys.find(k => variants.some(v => k.toLowerCase().includes(v.toLowerCase())));
       const colCuil = findKey(["cuil", "cuit", "usuario"]);
@@ -376,7 +315,6 @@ function renderTabla() {
   document.getElementById("empty-state").style.display = "none";
   document.getElementById("data-table").style.display = "table";
   document.getElementById("count-badge").textContent = `${usuarios.length} usuarios`;
-
   tbody.innerHTML = usuarios.map((u, i) => `
     <tr id="row-${i}">
       <td class="row-status"><span id="st-${i}" class="status-pending">○</span></td>
@@ -389,8 +327,7 @@ function renderTabla() {
 }
 
 function verificarListo() {
-  const listo = usuarios.length > 0 && gmailToken;
-  document.getElementById("btn-ejecutar").disabled = !listo;
+  document.getElementById("btn-ejecutar").disabled = !(usuarios.length > 0 && gmailToken);
 }
 
 // ---- EJECUTAR ----
@@ -410,7 +347,7 @@ document.getElementById("btn-ejecutar").addEventListener("click", async () => {
     setStatus(i, "sending", "⟳");
     log(`[${i+1}/${usuarios.length}] Procesando ${u.nombre}...`, "info");
 
-    // 1. Guardar en Firebase
+    // 1. Hashear PIN y guardar en Firebase
     try {
       const waitFB = () => new Promise(res => {
         if (window._fbReady) res();
@@ -418,10 +355,11 @@ document.getElementById("btn-ejecutar").addEventListener("click", async () => {
       });
       await waitFB();
       const { doc, setDoc } = window._fb;
+      const pinHash = await hashPin(String(u.pin));
       await setDoc(doc(window._db, "usuarios", u.cuil), {
         nombre: u.nombre,
         email: u.email,
-        pin: parseInt(u.pin),
+        pin: pinHash,
         activo: true
       });
     } catch(e) {
@@ -445,7 +383,6 @@ document.getElementById("btn-ejecutar").addEventListener("click", async () => {
     }
 
     setProgress(i + 1, usuarios.length);
-    // Pequeña pausa para no saturar la API
     await new Promise(r => setTimeout(r, 300));
   }
 
