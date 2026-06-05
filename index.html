@@ -13,9 +13,6 @@
   import { getFirestore, doc, setDoc, getDoc, collection, getDocs, onSnapshot, query, orderBy }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ============================================================
-  //  CONFIGURACIÓN FIREBASE — reemplazar con tus datos
-  // ============================================================
   const firebaseConfig = {
     apiKey: "AIzaSyAMDteMBM57J9tBYBo-97gbtaC0jFnGOdo",
     authDomain: "prode-mundial-2026-853a5.firebaseapp.com",
@@ -49,8 +46,6 @@
   --fuente:   'Barlow', sans-serif;
   --titulo:   'Bebas Neue', cursive;
   --cond:     'Barlow Condensed', sans-serif;
-
-  /* Custom easing curves — Emil Kowalski */
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -65,7 +60,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== FONDO APP ===== */
 body::before {
   content: '';
   position: fixed;
@@ -77,7 +71,6 @@ body::before {
   z-index: 0;
 }
 
-/* ===== HEADER ===== */
 header {
   background: linear-gradient(180deg, rgba(6,9,10,0.98) 0%, rgba(14,20,18,0.95) 100%);
   border-bottom: 1px solid rgba(0,208,132,0.25);
@@ -89,7 +82,6 @@ header {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
-/* Línea brillante superior del header */
 header::before {
   content: '';
   position: absolute;
@@ -156,15 +148,10 @@ header::before {
   transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out), transform 120ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .btn-logout:hover {
-    border-color: var(--rojo);
-    color: var(--rojo);
-    background: rgba(255,71,87,0.08);
-  }
+  .btn-logout:hover { border-color: var(--rojo); color: var(--rojo); background: rgba(255,71,87,0.08); }
 }
 .btn-logout:active { transform: scale(0.96); }
 
-/* ===== NAV TABS ===== */
 nav.tabs {
   background: rgba(14,20,18,0.95);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -201,7 +188,6 @@ nav.tabs li a.active {
   text-shadow: 0 0 16px rgba(0,208,132,0.5);
 }
 
-/* ===== MAIN ===== */
 main {
   max-width: 1200px;
   margin: 0 auto;
@@ -212,7 +198,6 @@ main {
 .section { display: none; }
 .section.active { display: block; }
 
-/* ===== LOGIN ===== */
 #login-screen {
   min-height: 100vh;
   display: flex;
@@ -227,13 +212,7 @@ main {
   background: #101f18;
 }
 
-/* Orbes de fondo animados */
-.login-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
+.login-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
 .login-orb-1 {
   width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(0,208,132,0.38) 0%, transparent 70%);
@@ -250,21 +229,18 @@ main {
   width: 300px; height: 300px;
   background: radial-gradient(circle, rgba(255,193,7,0.12) 0%, transparent 70%);
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: orbFloat 8s ease-in-out infinite alternate;
+  animation: orbFloat3 8s ease-in-out infinite alternate;
 }
 
 @keyframes orbFloat {
   0%   { transform: translate(0, 0) scale(1); }
   100% { transform: translate(40px, -30px) scale(1.1); }
 }
-.login-orb-3 { animation: orbFloat3 8s ease-in-out infinite alternate; }
 @keyframes orbFloat3 {
   0%   { transform: translate(-50%, -50%) scale(1); }
   100% { transform: translate(calc(-50% + 20px), calc(-50% - 20px)) scale(1.15); }
 }
 
-/* Grid de campo decorativo */
 #login-screen::after {
   content: '';
   position: absolute;
@@ -277,7 +253,6 @@ main {
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.6) 20%, transparent 75%);
 }
 
-/* Ícono grande de fútbol */
 .login-icon {
   font-size: 3.5rem;
   position: relative;
@@ -303,13 +278,9 @@ main {
   text-align: center;
   position: relative;
   z-index: 1;
-  box-shadow:
-    0 0 0 1px rgba(0,208,132,0.06) inset,
-    0 40px 80px rgba(0,0,0,0.7),
-    0 0 120px rgba(0,208,132,0.1);
+  box-shadow: 0 0 0 1px rgba(0,208,132,0.06) inset, 0 40px 80px rgba(0,0,0,0.7), 0 0 120px rgba(0,208,132,0.1);
   animation: cardEnter 600ms var(--ease-out) 200ms both;
 }
-/* Línea superior de la card */
 .login-card::before {
   content: '';
   position: absolute;
@@ -318,7 +289,6 @@ main {
   background: linear-gradient(90deg, transparent, var(--verde), var(--verde2), transparent);
   border-radius: 1px;
 }
-
 @keyframes cardEnter {
   from { opacity: 0; transform: translateY(20px) scale(0.96); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -396,10 +366,7 @@ main {
   box-shadow: 0 4px 24px rgba(0,208,132,0.35), 0 1px 0 rgba(255,255,255,0.15) inset;
 }
 @media (hover: hover) and (pointer: fine) {
-  .btn-login:hover {
-    opacity: 0.9;
-    box-shadow: 0 8px 32px rgba(0,208,132,0.5);
-  }
+  .btn-login:hover { opacity: 0.9; box-shadow: 0 8px 32px rgba(0,208,132,0.5); }
 }
 .btn-login:active { transform: scale(0.97); }
 
@@ -412,9 +379,7 @@ main {
   letter-spacing: 0.5px;
 }
 
-/* ===== GRILLA DE PREDICCIONES ===== */
 .grupo-section { margin-bottom: 48px; }
-
 .grupo-header {
   display: flex;
   align-items: center;
@@ -433,12 +398,7 @@ main {
   border-radius: 6px;
   box-shadow: 0 0 16px rgba(0,208,132,0.4);
 }
-.grupo-equipos {
-  font-family: var(--cond);
-  font-size: 0.95rem;
-  color: var(--gris4);
-  letter-spacing: 0.5px;
-}
+.grupo-equipos { font-family: var(--cond); font-size: 0.95rem; color: var(--gris4); letter-spacing: 0.5px; }
 
 .partidos-grid {
   display: grid;
@@ -446,7 +406,6 @@ main {
   gap: 8px;
 }
 
-/* Cards con animación JS-driven (se agrega animation-delay inline) */
 .partido-card {
   background: linear-gradient(135deg, rgba(24,32,25,0.9) 0%, rgba(14,20,18,0.95) 100%);
   border: 1px solid rgba(255,255,255,0.07);
@@ -461,10 +420,7 @@ main {
   transform: translateY(8px);
   animation: cardIn 300ms var(--ease-out) forwards;
 }
-@keyframes cardIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
+@keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
 @media (hover: hover) and (pointer: fine) {
   .partido-card:hover {
     border-color: rgba(0,208,132,0.2);
@@ -474,28 +430,18 @@ main {
     box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,208,132,0.1);
   }
 }
-
 .partido-card.completado {
   border-left-color: var(--verde);
   background: linear-gradient(135deg, rgba(0,208,132,0.08) 0%, rgba(14,20,18,0.95) 100%);
 }
 .partido-card.cerrado { opacity: 0.55; pointer-events: none; }
 
-.equipo-nombre {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 1.18rem;
-  flex: 1;
-  text-align: right;
-  letter-spacing: 0.3px;
-}
+.equipo-nombre { font-family: var(--cond); font-weight: 700; font-size: 1.18rem; flex: 1; text-align: right; letter-spacing: 0.3px; }
 .equipo-nombre.visitante { text-align: left; }
-
 .marcador-input { display: flex; align-items: center; gap: 6px; }
 
 .gol-input {
-  width: 46px;
-  height: 46px;
+  width: 46px; height: 46px;
   background: rgba(0,0,0,0.4);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
@@ -509,133 +455,51 @@ main {
 }
 .gol-input::-webkit-outer-spin-button,
 .gol-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-.gol-input:focus {
-  border-color: var(--verde);
-  box-shadow: 0 0 0 3px rgba(0,208,132,0.2);
-  transform: scale(1.06);
-}
+.gol-input:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(0,208,132,0.2); transform: scale(1.06); }
 
-.gol-sep {
-  font-family: var(--titulo);
-  font-size: 1.3rem;
-  color: var(--gris4);
-  user-select: none;
-}
+.gol-sep { font-family: var(--titulo); font-size: 1.3rem; color: var(--gris4); user-select: none; }
 
 .fecha-badge {
-  font-family: var(--cond);
-  font-size: 0.68rem;
-  color: var(--gris4);
-  background: rgba(255,255,255,0.05);
-  padding: 3px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.08);
-  letter-spacing: 0.5px;
+  font-family: var(--cond); font-size: 0.68rem; color: var(--gris4);
+  background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.5px;
 }
 
-/* Indicadores */
-.punto-badge {
-  font-family: var(--titulo);
-  font-size: 0.9rem;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.punto-5 {
-  background: var(--oro);
-  color: #1a1200;
-  box-shadow: 0 0 14px rgba(255,193,7,0.5);
-}
-.punto-3 {
-  background: var(--verde);
-  color: #04120a;
-  box-shadow: 0 0 14px rgba(0,208,132,0.45);
-}
+.punto-badge { font-family: var(--titulo); font-size: 0.9rem; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.punto-5 { background: var(--oro); color: #1a1200; box-shadow: 0 0 14px rgba(255,193,7,0.5); }
+.punto-3 { background: var(--verde); color: #04120a; box-shadow: 0 0 14px rgba(0,208,132,0.45); }
 .punto-0 { background: rgba(255,255,255,0.06); color: var(--gris4); }
 .punto-pendiente { border: 1px dashed rgba(255,255,255,0.12); }
 
-/* Botón guardar */
 .btn-guardar {
   background: linear-gradient(135deg, var(--verde) 0%, var(--verde2) 100%);
-  color: #04120a;
-  border: none;
-  border-radius: 12px;
-  padding: 13px 36px;
-  font-family: var(--titulo);
-  font-size: 1.15rem;
-  letter-spacing: 2px;
-  cursor: pointer;
+  color: #04120a; border: none; border-radius: 12px; padding: 13px 36px;
+  font-family: var(--titulo); font-size: 1.15rem; letter-spacing: 2px; cursor: pointer;
   transition: opacity 160ms var(--ease-out), transform 120ms var(--ease-out), box-shadow 160ms var(--ease-out);
-  display: block;
-  margin: 36px auto 0;
-  box-shadow: 0 4px 24px rgba(0,208,132,0.3);
+  display: block; margin: 36px auto 0; box-shadow: 0 4px 24px rgba(0,208,132,0.3);
 }
 @media (hover: hover) and (pointer: fine) {
   .btn-guardar:hover { opacity: 0.88; box-shadow: 0 8px 32px rgba(0,208,132,0.45); }
 }
 .btn-guardar:active { transform: scale(0.97); }
-.btn-guardar:disabled {
-  background: var(--gris3);
-  color: var(--gris4);
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 1;
-}
+.btn-guardar:disabled { background: var(--gris3); color: var(--gris4); cursor: not-allowed; box-shadow: none; opacity: 1; }
 
-.save-status {
-  text-align: center;
-  font-family: var(--cond);
-  font-size: 0.85rem;
-  color: var(--verde);
-  margin-top: 10px;
-  min-height: 20px;
-}
+.save-status { text-align: center; font-family: var(--cond); font-size: 0.85rem; color: var(--verde); margin-top: 10px; min-height: 20px; }
 
-/* ===== BANNER CERRADO ===== */
 .banner-cerrado {
-  background: rgba(255,193,7,0.07);
-  border: 1px solid rgba(255,193,7,0.3);
-  border-left: 4px solid var(--oro);
-  border-radius: 14px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  background: rgba(255,193,7,0.07); border: 1px solid rgba(255,193,7,0.3);
+  border-left: 4px solid var(--oro); border-radius: 14px; padding: 20px 24px;
+  margin-bottom: 28px; display: flex; align-items: center; gap: 16px;
 }
 .banner-cerrado .icon { font-size: 2rem; }
 .banner-cerrado p { font-family: var(--cond); }
 .banner-cerrado strong { color: var(--oro); font-size: 1.1rem; display: block; }
 .banner-cerrado span { color: var(--gris4); font-size: 0.85rem; }
 
-/* ===== RANKING ===== */
 .ranking-table { width: 100%; border-collapse: collapse; }
-.ranking-table th {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gris4);
-  padding: 10px 16px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.ranking-table td {
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-family: var(--cond);
-  font-size: 1.15rem;
-  transition: background 140ms var(--ease-out);
-}
-.ranking-table tbody tr {
-  opacity: 0;
-  animation: rankRowIn 320ms var(--ease-out) forwards;
-}
+.ranking-table th { font-family: var(--cond); font-weight: 700; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gris4); padding: 10px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.ranking-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-family: var(--cond); font-size: 1.15rem; transition: background 140ms var(--ease-out); }
+.ranking-table tbody tr { opacity: 0; animation: rankRowIn 320ms var(--ease-out) forwards; }
 .ranking-table tbody tr:nth-child(1)  { animation-delay: 0ms; }
 .ranking-table tbody tr:nth-child(2)  { animation-delay: 40ms; }
 .ranking-table tbody tr:nth-child(3)  { animation-delay: 80ms; }
@@ -645,51 +509,23 @@ main {
 .ranking-table tbody tr:nth-child(7)  { animation-delay: 240ms; }
 .ranking-table tbody tr:nth-child(8)  { animation-delay: 280ms; }
 .ranking-table tbody tr:nth-child(n+9) { animation-delay: 300ms; }
+@keyframes rankRowIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+@media (hover: hover) and (pointer: fine) { .ranking-table tr:hover td { background: rgba(0,208,132,0.05); } }
 
-@keyframes rankRowIn {
-  from { opacity: 0; transform: translateX(-10px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@media (hover: hover) and (pointer: fine) {
-  .ranking-table tr:hover td { background: rgba(0,208,132,0.05); }
-}
-
-.rank-pos {
-  font-family: var(--titulo);
-  font-size: 1.5rem;
-  color: var(--gris4);
-  width: 50px;
-}
+.rank-pos { font-family: var(--titulo); font-size: 1.5rem; color: var(--gris4); width: 50px; }
 .rank-pos.top1 { color: var(--oro); text-shadow: 0 0 16px rgba(255,193,7,0.6); }
 .rank-pos.top2 { color: #c8d6c8; }
 .rank-pos.top3 { color: #cd8b3a; }
 .rank-nombre { font-weight: 700; color: var(--blanco); font-size: 1.25rem; }
 .rank-yo { color: var(--verde2); }
-.rank-pts {
-  font-family: var(--titulo);
-  font-size: 1.7rem;
-  color: var(--verde);
-  text-align: right;
-  text-shadow: 0 0 12px rgba(0,208,132,0.3);
-}
+.rank-pts { font-family: var(--titulo); font-size: 1.7rem; color: var(--verde); text-align: right; text-shadow: 0 0 12px rgba(0,208,132,0.3); }
 .rank-5s, .rank-3s { font-family: var(--titulo); font-size: 1.15rem; text-align: center; }
 .rank-5s { color: var(--oro); }
 .rank-3s { color: var(--verde); }
 
-/* ===== MIS RESULTADOS ===== */
 .resultados-grupo { margin-bottom: 36px; }
-.resultado-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  transition: background 140ms var(--ease-out);
-  border-radius: 8px;
-}
-@media (hover: hover) and (pointer: fine) {
-  .resultado-row:hover { background: rgba(0,208,132,0.04); }
-}
+.resultado-row { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 140ms var(--ease-out); border-radius: 8px; }
+@media (hover: hover) and (pointer: fine) { .resultado-row:hover { background: rgba(0,208,132,0.04); } }
 .res-local { text-align: right; flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; }
 .res-marcadores { display: flex; align-items: center; gap: 8px; font-family: var(--titulo); font-size: 1.2rem; }
 .res-real { color: var(--blanco); }
@@ -698,42 +534,20 @@ main {
 .res-visitante { flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; }
 .res-pts { width: 40px; text-align: center; }
 
-/* ===== SPINNER ===== */
-.spinner {
-  width: 36px; height: 36px;
-  border: 2px solid rgba(255,255,255,0.08);
-  border-top-color: var(--verde);
-  border-radius: 50%;
-  animation: spin .6s linear infinite;
-  margin: 60px auto;
-  box-shadow: 0 0 16px rgba(0,208,132,0.2);
-}
+.spinner { width: 36px; height: 36px; border: 2px solid rgba(255,255,255,0.08); border-top-color: var(--verde); border-radius: 50%; animation: spin .6s linear infinite; margin: 60px auto; box-shadow: 0 0 16px rgba(0,208,132,0.2); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ===== TOAST ===== */
 #toast {
-  position: fixed;
-  bottom: 28px; right: 28px;
-  background: rgba(14,20,18,0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0,208,132,0.4);
-  border-radius: 12px;
-  padding: 13px 24px;
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  color: var(--verde2);
-  z-index: 999;
-  transform: translateY(90px);
-  opacity: 0;
+  position: fixed; bottom: 28px; right: 28px;
+  background: rgba(14,20,18,0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,208,132,0.4); border-radius: 12px; padding: 13px 24px;
+  font-family: var(--cond); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
+  color: var(--verde2); z-index: 999; transform: translateY(90px); opacity: 0;
   box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 24px rgba(0,208,132,0.12);
   transition: transform 350ms var(--ease-out), opacity 250ms ease-out;
 }
 #toast.show { transform: translateY(0); opacity: 1; }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .header-inner { padding: 12px 16px; }
   .logo h1 { font-size: 1.8rem; }
@@ -746,21 +560,14 @@ main {
   .login-icon { font-size: 2.8rem; }
 }
 
-/* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .login-orb { animation: none !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     LOGIN
-============================================================ -->
 <div id="login-screen">
   <div class="login-orb login-orb-1"></div>
   <div class="login-orb login-orb-2"></div>
@@ -777,9 +584,6 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     APP
-============================================================ -->
 <div id="app" style="display:none">
   <header>
     <div class="header-inner">
@@ -803,17 +607,12 @@ main {
   </nav>
 
   <main>
-    <!-- ---- PREDICCIONES ---- -->
     <div class="section active" id="tab-predicciones">
       <div id="predicciones-content"><div class="spinner"></div></div>
     </div>
-
-    <!-- ---- RESULTADOS ---- -->
     <div class="section" id="tab-resultados">
       <div id="resultados-content"><div class="spinner"></div></div>
     </div>
-
-    <!-- ---- RANKING ---- -->
     <div class="section" id="tab-ranking">
       <div id="ranking-content"><div class="spinner"></div></div>
     </div>
@@ -822,11 +621,7 @@ main {
 
 <div id="toast"></div>
 
-<!-- ============================================================
-     FIXTURE DATA
-============================================================ -->
 <script>
-// ---- Datos del mundial ----
 const GRUPOS = {
   A: ["México","Corea del Sur","Sudáfrica","Rep. Checa"],
   B: ["Canadá","Suiza","Qatar","Bosnia y Herzegovina"],
@@ -842,7 +637,6 @@ const GRUPOS = {
   L: ["Inglaterra","Croacia","Panamá","Ghana"]
 };
 
-// Códigos ISO para flagcdn.com — funciona en todos los sistemas (no depende del OS)
 const FLAG_CODES = {
   "México":"mx","Corea del Sur":"kr","Sudáfrica":"za","Rep. Checa":"cz",
   "Canadá":"ca","Suiza":"ch","Qatar":"qa","Bosnia y Herzegovina":"ba",
@@ -864,7 +658,6 @@ function getBandera(pais) {
   return `<img src="https://flagcdn.com/20x15/${code}.png" srcset="https://flagcdn.com/40x30/${code}.png 2x" width="20" height="15" alt="${pais}" style="vertical-align:middle;border-radius:2px;margin-right:2px;">`;
 }
 
-// Compatibilidad: mantener BANDERAS como alias (ya no usado directamente)
 const BANDERAS = FLAG_CODES;
 
 function generarFixture() {
@@ -874,14 +667,7 @@ function generarFixture() {
     const pares = [[0,1],[2,3],[0,2],[1,3],[0,3],[1,2]];
     const fechas = [1,1,2,2,3,3];
     pares.forEach(([i,j], idx) => {
-      fixture.push({
-        id: `${grupo}${idx+1}`,
-        num: num++,
-        grupo,
-        fecha: fechas[idx],
-        local: equipos[i],
-        visitante: equipos[j]
-      });
+      fixture.push({ id: `${grupo}${idx+1}`, num: num++, grupo, fecha: fechas[idx], local: equipos[i], visitante: equipos[j] });
     });
   }
   return fixture;
@@ -899,22 +685,26 @@ function calcularPuntos(pred, real) {
 }
 </script>
 
-<!-- ============================================================
-     APP LOGIC
-============================================================ -->
 <script type="module">
-// El módulo Firebase ya se inicializó arriba como window._db
-// Esperamos que esté listo
 
 let currentUser = null;
 let prediccionesCache = {};
 let resultadosCache = {};
 let rankingUnsub = null;
-let predAbiertoCache = true; // se actualiza desde Firebase
+let predAbiertoCache = true;
 
 // ---- Utilidades ----
 function estaAbierto() {
   return predAbiertoCache;
+}
+
+// ---- HASH PIN — fuera de login, accesible globalmente ----
+async function hashPin(pin) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(pin);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
 function toast(msg, dur = 2500) {
@@ -929,7 +719,6 @@ function setTab(name) {
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.remove("active"));
   document.getElementById(`tab-${name}`).classList.add("active");
   document.querySelector(`[data-tab="${name}"]`).classList.add("active");
-
   if (name === "predicciones") renderPredicciones();
   if (name === "resultados") renderResultados();
   if (name === "ranking") renderRanking();
@@ -946,7 +735,8 @@ async function login(usuario, pass) {
     const snap = await getDoc(doc(db, "usuarios", usuario.toLowerCase().trim()));
     if (!snap.exists()) { err.textContent = "Usuario no encontrado."; return; }
     const data = snap.data();
-    if (String(data.pin) !== String(pass.trim())) { err.textContent = "Código incorrecto."; return; }
+    const pinIngresado = await hashPin(String(pass.trim()));
+    if (pinIngresado !== data.pin) { err.textContent = "Código incorrecto."; return; }
 
     currentUser = { id: usuario.toLowerCase().trim(), nombre: data.nombre || usuario, admin: data.admin || false };
     localStorage.setItem("prode_user", JSON.stringify(currentUser));
@@ -965,17 +755,14 @@ async function login(usuario, pass) {
 
 async function cargarDatos() {
   const db = window._db;
-  const { doc, getDoc, collection, getDocs } = window._firebase;
+  const { doc, getDoc } = window._firebase;
 
-  // Predicciones del usuario
   const pSnap = await getDoc(doc(db, "predicciones", currentUser.id));
   prediccionesCache = pSnap.exists() ? pSnap.data() : {};
 
-  // Resultados reales
   const rSnap = await getDoc(doc(db, "resultados", "oficial"));
   resultadosCache = rSnap.exists() ? rSnap.data() : {};
 
-  // Estado de predicciones (controlado desde admin)
   const cfgSnap = await getDoc(doc(db, "config", "predicciones"));
   predAbiertoCache = cfgSnap.exists() ? cfgSnap.data().abierto : true;
 }
@@ -996,7 +783,6 @@ function renderPredicciones() {
     </div>`;
   }
 
-  // Agrupar por grupo
   const grupos = {};
   FIXTURE.forEach(p => {
     if (!grupos[p.grupo]) grupos[p.grupo] = [];
@@ -1035,12 +821,10 @@ function renderPredicciones() {
         <span class="equipo-nombre">${getBandera(p.local)} ${p.local}</span>
         <div class="marcador-input">
           <input type="number" class="gol-input" min="0" max="20"
-            data-pid="${p.id}" data-lado="gl" value="${glVal}" ${readonly}
-            placeholder="–">
+            data-pid="${p.id}" data-lado="gl" value="${glVal}" ${readonly} placeholder="–">
           <span class="gol-sep">:</span>
           <input type="number" class="gol-input" min="0" max="20"
-            data-pid="${p.id}" data-lado="gv" value="${gvVal}" ${readonly}
-            placeholder="–">
+            data-pid="${p.id}" data-lado="gv" value="${gvVal}" ${readonly} placeholder="–">
         </div>
         <span class="equipo-nombre visitante">${getBandera(p.visitante)} ${p.visitante}</span>
         <span class="fecha-badge">F${p.fecha}</span>
@@ -1058,7 +842,6 @@ function renderPredicciones() {
   cont.innerHTML = html;
 
   if (abierto) {
-    // Auto-guardar al cambiar inputs
     cont.querySelectorAll(".gol-input").forEach(inp => {
       inp.addEventListener("input", () => {
         const pid = inp.dataset.pid;
@@ -1066,15 +849,12 @@ function renderPredicciones() {
         const val = inp.value === "" ? null : parseInt(inp.value);
         if (!prediccionesCache[pid]) prediccionesCache[pid] = { gl: null, gv: null };
         prediccionesCache[pid][lado] = val;
-
-        // Marcar como completado si ambos tienen valor
         const card = inp.closest(".partido-card");
         const pred = prediccionesCache[pid];
         if (pred.gl !== null && pred.gv !== null) card.classList.add("completado");
         else card.classList.remove("completado");
       });
     });
-
     document.getElementById("btn-guardar-pred").addEventListener("click", guardarPredicciones);
   }
 }
@@ -1130,6 +910,7 @@ function renderResultados() {
 
       const predTxt = pred && pred.gl !== null ? `${pred.gl}-${pred.gv}` : "–";
       const realTxt = real && real.gl !== null ? `${real.gl}-${real.gv}` : "?";
+
       let ptsBadge = "";
       if (pts === 5) ptsBadge = `<div class="punto-badge punto-5">5</div>`;
       else if (pts === 3) ptsBadge = `<div class="punto-badge punto-3">3</div>`;
@@ -1169,7 +950,6 @@ function renderResultados() {
   </div>`;
 
   cont.innerHTML = resumen + html;
-  if (window.twemoji) twemoji.parse(cont, { folder: 'svg', ext: '.svg' });
 }
 
 // ---- RANKING ----
@@ -1180,7 +960,6 @@ async function renderRanking() {
   const { collection, getDocs } = window._firebase;
 
   try {
-    // Cargar todas las predicciones
     const predsSnap = await getDocs(collection(db, "predicciones"));
     const usersSnap = await getDocs(collection(db, "usuarios"));
 
@@ -1193,7 +972,7 @@ async function renderRanking() {
     const ranking = [];
     predsSnap.forEach(d => {
       const uid = d.id;
-      if (!usuarios[uid]) return; // solo usuarios activos
+      if (!usuarios[uid]) return;
       const preds = d.data();
       let pts = 0, e5 = 0, e3 = 0;
       FIXTURE.forEach(p => {
@@ -1242,7 +1021,6 @@ async function renderRanking() {
 
 // ---- INIT ----
 document.addEventListener("DOMContentLoaded", () => {
-  // Tabs
   document.querySelectorAll("nav.tabs a").forEach(a => {
     a.addEventListener("click", e => {
       e.preventDefault();
@@ -1250,14 +1028,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Logout
   document.getElementById("btn-logout").addEventListener("click", () => {
     currentUser = null;
     localStorage.removeItem("prode_user");
     location.reload();
   });
 
-  // Enter en login
   ["inp-usuario","inp-pass"].forEach(id => {
     document.getElementById(id).addEventListener("keydown", e => {
       if (e.key === "Enter") doLogin();
@@ -1276,12 +1052,10 @@ document.addEventListener("DOMContentLoaded", () => {
     login(u, p);
   }
 
-  // Auto-login si hay sesión guardada
   const saved = localStorage.getItem("prode_user");
   if (saved) {
     try {
       const u = JSON.parse(saved);
-      // Esperamos Firebase
       const tryAutoLogin = () => {
         if (!window._fbReady) { setTimeout(tryAutoLogin, 100); return; }
         currentUser = u;
