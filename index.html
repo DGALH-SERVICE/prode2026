@@ -6,8 +6,6 @@
 <title>Prode Mundial 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<!-- Twemoji: renderiza banderas en Windows/PC -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" crossorigin="anonymous"></script>
 
 <!-- Firebase SDK -->
 <script type="module">
@@ -437,7 +435,7 @@ main {
 }
 .grupo-equipos {
   font-family: var(--cond);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: var(--gris4);
   letter-spacing: 0.5px;
 }
@@ -486,7 +484,7 @@ main {
 .equipo-nombre {
   font-family: var(--cond);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.18rem;
   flex: 1;
   text-align: right;
   letter-spacing: 0.3px;
@@ -631,7 +629,7 @@ main {
   padding: 14px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.04);
   font-family: var(--cond);
-  font-size: 1.08rem;
+  font-size: 1.15rem;
   transition: background 140ms var(--ease-out);
 }
 .ranking-table tbody tr {
@@ -665,7 +663,7 @@ main {
 .rank-pos.top1 { color: var(--oro); text-shadow: 0 0 16px rgba(255,193,7,0.6); }
 .rank-pos.top2 { color: #c8d6c8; }
 .rank-pos.top3 { color: #cd8b3a; }
-.rank-nombre { font-weight: 700; color: var(--blanco); font-size: 1.15rem; }
+.rank-nombre { font-weight: 700; color: var(--blanco); font-size: 1.25rem; }
 .rank-yo { color: var(--verde2); }
 .rank-pts {
   font-family: var(--titulo);
@@ -692,12 +690,12 @@ main {
 @media (hover: hover) and (pointer: fine) {
   .resultado-row:hover { background: rgba(0,208,132,0.04); }
 }
-.res-local { text-align: right; flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.05rem; }
+.res-local { text-align: right; flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; }
 .res-marcadores { display: flex; align-items: center; gap: 8px; font-family: var(--titulo); font-size: 1.2rem; }
 .res-real { color: var(--blanco); }
 .res-pred { color: var(--gris4); font-size: 0.9rem; }
 .res-sep { color: var(--gris4); }
-.res-visitante { flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.05rem; }
+.res-visitante { flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; }
 .res-pts { width: 40px; text-align: center; }
 
 /* ===== SPINNER ===== */
@@ -746,14 +744,6 @@ main {
   .login-card { padding: 36px 24px 32px; border-radius: 20px; max-width: 95vw; }
   .login-card h2 { font-size: 3.8rem; }
   .login-icon { font-size: 2.8rem; }
-}
-
-/* ===== TWEMOJI ===== */
-img.emoji {
-  height: 1.1em;
-  width: 1.1em;
-  vertical-align: -0.15em;
-  display: inline-block;
 }
 
 /* ===== REDUCED MOTION ===== */
@@ -852,20 +842,30 @@ const GRUPOS = {
   L: ["Inglaterra","Croacia","Panamá","Ghana"]
 };
 
-const BANDERAS = {
-  "México":"🇲🇽","Corea del Sur":"🇰🇷","Sudáfrica":"🇿🇦","Rep. Checa":"🇨🇿",
-  "Canadá":"🇨🇦","Suiza":"🇨🇭","Qatar":"🇶🇦","Bosnia y Herzegovina":"🇧🇦",
-  "Brasil":"🇧🇷","Marruecos":"🇲🇦","Escocia":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","Haití":"🇭🇹",
-  "EE.UU.":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Turquía":"🇹🇷",
-  "Alemania":"🇩🇪","Ecuador":"🇪🇨","Costa de Marfil":"🇨🇮","Curazao":"🇨🇼",
-  "Países Bajos":"🇳🇱","Japón":"🇯🇵","Túnez":"🇹🇳","Ucrania":"🇺🇦",
-  "Bélgica":"🇧🇪","Irán":"🇮🇷","Egipto":"🇪🇬","Nueva Zelanda":"🇳🇿",
-  "España":"🇪🇸","Uruguay":"🇺🇾","Arabia Saudí":"🇸🇦","Cabo Verde":"🇨🇻",
-  "Francia":"🇫🇷","Senegal":"🇸🇳","Noruega":"🇳🇴","Irak":"🇮🇶",
-  "Argentina":"🇦🇷","Austria":"🇦🇹","Argelia":"🇩🇿","Jordania":"🇯🇴",
-  "Portugal":"🇵🇹","Colombia":"🇨🇴","Uzbekistán":"🇺🇿","RD Congo":"🇨🇩",
-  "Inglaterra":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croacia":"🇭🇷","Panamá":"🇵🇦","Ghana":"🇬🇭"
+// Códigos ISO para flagcdn.com — funciona en todos los sistemas (no depende del OS)
+const FLAG_CODES = {
+  "México":"mx","Corea del Sur":"kr","Sudáfrica":"za","Rep. Checa":"cz",
+  "Canadá":"ca","Suiza":"ch","Qatar":"qa","Bosnia y Herzegovina":"ba",
+  "Brasil":"br","Marruecos":"ma","Escocia":"gb-sct","Haití":"ht",
+  "EE.UU.":"us","Paraguay":"py","Australia":"au","Turquía":"tr",
+  "Alemania":"de","Ecuador":"ec","Costa de Marfil":"ci","Curazao":"cw",
+  "Países Bajos":"nl","Japón":"jp","Túnez":"tn","Ucrania":"ua",
+  "Bélgica":"be","Irán":"ir","Egipto":"eg","Nueva Zelanda":"nz",
+  "España":"es","Uruguay":"uy","Arabia Saudí":"sa","Cabo Verde":"cv",
+  "Francia":"fr","Senegal":"sn","Noruega":"no","Irak":"iq",
+  "Argentina":"ar","Austria":"at","Argelia":"dz","Jordania":"jo",
+  "Portugal":"pt","Colombia":"co","Uzbekistán":"uz","RD Congo":"cd",
+  "Inglaterra":"gb-eng","Croacia":"hr","Panamá":"pa","Ghana":"gh"
 };
+
+function getBandera(pais) {
+  const code = FLAG_CODES[pais];
+  if (!code) return '';
+  return `<img src="https://flagcdn.com/20x15/${code}.png" srcset="https://flagcdn.com/40x30/${code}.png 2x" width="20" height="15" alt="${pais}" style="vertical-align:middle;border-radius:2px;margin-right:2px;">`;
+}
+
+// Compatibilidad: mantener BANDERAS como alias (ya no usado directamente)
+const BANDERAS = FLAG_CODES;
 
 function generarFixture() {
   const fixture = [];
@@ -1008,7 +1008,7 @@ function renderPredicciones() {
     html += `<div class="grupo-section">
       <div class="grupo-header">
         <span class="grupo-label">GRUPO ${letra}</span>
-        <span class="grupo-equipos">${equipos.map(e => `${BANDERAS[e]||''} ${e}`).join(" · ")}</span>
+        <span class="grupo-equipos">${equipos.map(e => `${getBandera(e)} ${e}`).join(" · ")}</span>
       </div>
       <div class="partidos-grid">`;
 
@@ -1032,7 +1032,7 @@ function renderPredicciones() {
 
       html += `<div class="partido-card ${cardClass}" data-id="${p.id}" style="animation-delay:${delay}ms">
         ${ptsBadge}
-        <span class="equipo-nombre">${BANDERAS[p.local]||''} ${p.local}</span>
+        <span class="equipo-nombre">${getBandera(p.local)} ${p.local}</span>
         <div class="marcador-input">
           <input type="number" class="gol-input" min="0" max="20"
             data-pid="${p.id}" data-lado="gl" value="${glVal}" ${readonly}
@@ -1042,7 +1042,7 @@ function renderPredicciones() {
             data-pid="${p.id}" data-lado="gv" value="${gvVal}" ${readonly}
             placeholder="–">
         </div>
-        <span class="equipo-nombre visitante">${BANDERAS[p.visitante]||''} ${p.visitante}</span>
+        <span class="equipo-nombre visitante">${getBandera(p.visitante)} ${p.visitante}</span>
         <span class="fecha-badge">F${p.fecha}</span>
       </div>`;
     });
@@ -1056,7 +1056,6 @@ function renderPredicciones() {
   }
 
   cont.innerHTML = html;
-  if (window.twemoji) twemoji.parse(cont, { folder: 'svg', ext: '.svg' });
 
   if (abierto) {
     // Auto-guardar al cambiar inputs
@@ -1139,13 +1138,13 @@ function renderResultados() {
 
       grupoHtml += `<div class="resultado-row">
         ${ptsBadge}
-        <span class="res-local">${BANDERAS[p.local]||''} ${p.local}</span>
+        <span class="res-local">${getBandera(p.local)} ${p.local}</span>
         <div class="res-marcadores">
           <span class="res-real">${realTxt}</span>
           <span class="res-sep">·</span>
           <span class="res-pred">${predTxt}</span>
         </div>
-        <span class="res-visitante">${BANDERAS[p.visitante]||''} ${p.visitante}</span>
+        <span class="res-visitante">${getBandera(p.visitante)} ${p.visitante}</span>
       </div>`;
     });
 
