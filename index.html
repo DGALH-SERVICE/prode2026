@@ -6,6 +6,8 @@
 <title>Prode Mundial 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Twemoji: renderiza banderas en Windows/PC -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" crossorigin="anonymous"></script>
 
 <!-- Firebase SDK -->
 <script type="module">
@@ -36,15 +38,15 @@
 <style>
 /* ====================== VARIABLES ====================== */
 :root {
-  --negro:    #06090a;
+  --negro:    #101f18;
   --verde:    #00d084;
   --verde2:   #00f5a0;
   --oro:      #ffc107;
   --rojo:     #ff4757;
-  --gris1:    #0e1412;
-  --gris2:    #182019;
-  --gris3:    #243028;
-  --gris4:    #5a7060;
+  --gris1:    #172318;
+  --gris2:    #1f2e22;
+  --gris3:    #2c3e2f;
+  --gris4:    #6a8a70;
   --blanco:   #e8f5e9;
   --fuente:   'Barlow', sans-serif;
   --titulo:   'Bebas Neue', cursive;
@@ -71,8 +73,8 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 900px 600px at 10% 0%, rgba(0,208,132,0.13) 0%, transparent 70%),
-    radial-gradient(ellipse 700px 500px at 90% 100%, rgba(0,208,132,0.09) 0%, transparent 70%);
+    radial-gradient(ellipse 900px 600px at 10% 0%, rgba(0,208,132,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 500px at 90% 100%, rgba(0,208,132,0.14) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -184,7 +186,7 @@ nav.tabs li a {
   padding: 15px 24px;
   font-family: var(--cond);
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 1rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   text-decoration: none;
@@ -224,7 +226,7 @@ main {
   inset: 0;
   z-index: 200;
   overflow: hidden;
-  background: #06090a;
+  background: #101f18;
 }
 
 /* Orbes de fondo animados */
@@ -236,13 +238,13 @@ main {
 }
 .login-orb-1 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,208,132,0.28) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,208,132,0.38) 0%, transparent 70%);
   top: -150px; left: -150px;
   animation: orbFloat 12s ease-in-out infinite alternate;
 }
 .login-orb-2 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0,245,160,0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,245,160,0.28) 0%, transparent 70%);
   bottom: -100px; right: -100px;
   animation: orbFloat 10s ease-in-out infinite alternate-reverse;
 }
@@ -484,7 +486,7 @@ main {
 .equipo-nombre {
   font-family: var(--cond);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   flex: 1;
   text-align: right;
   letter-spacing: 0.3px;
@@ -629,7 +631,7 @@ main {
   padding: 14px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.04);
   font-family: var(--cond);
-  font-size: 1rem;
+  font-size: 1.08rem;
   transition: background 140ms var(--ease-out);
 }
 .ranking-table tbody tr {
@@ -663,7 +665,7 @@ main {
 .rank-pos.top1 { color: var(--oro); text-shadow: 0 0 16px rgba(255,193,7,0.6); }
 .rank-pos.top2 { color: #c8d6c8; }
 .rank-pos.top3 { color: #cd8b3a; }
-.rank-nombre { font-weight: 700; color: var(--blanco); font-size: 1.05rem; }
+.rank-nombre { font-weight: 700; color: var(--blanco); font-size: 1.15rem; }
 .rank-yo { color: var(--verde2); }
 .rank-pts {
   font-family: var(--titulo);
@@ -690,12 +692,12 @@ main {
 @media (hover: hover) and (pointer: fine) {
   .resultado-row:hover { background: rgba(0,208,132,0.04); }
 }
-.res-local { text-align: right; flex: 1; font-family: var(--cond); font-weight: 700; }
+.res-local { text-align: right; flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.05rem; }
 .res-marcadores { display: flex; align-items: center; gap: 8px; font-family: var(--titulo); font-size: 1.2rem; }
 .res-real { color: var(--blanco); }
 .res-pred { color: var(--gris4); font-size: 0.9rem; }
 .res-sep { color: var(--gris4); }
-.res-visitante { flex: 1; font-family: var(--cond); font-weight: 700; }
+.res-visitante { flex: 1; font-family: var(--cond); font-weight: 700; font-size: 1.05rem; }
 .res-pts { width: 40px; text-align: center; }
 
 /* ===== SPINNER ===== */
@@ -744,6 +746,14 @@ main {
   .login-card { padding: 36px 24px 32px; border-radius: 20px; max-width: 95vw; }
   .login-card h2 { font-size: 3.8rem; }
   .login-icon { font-size: 2.8rem; }
+}
+
+/* ===== TWEMOJI ===== */
+img.emoji {
+  height: 1.1em;
+  width: 1.1em;
+  vertical-align: -0.15em;
+  display: inline-block;
 }
 
 /* ===== REDUCED MOTION ===== */
@@ -1046,6 +1056,7 @@ function renderPredicciones() {
   }
 
   cont.innerHTML = html;
+  if (window.twemoji) twemoji.parse(cont, { folder: 'svg', ext: '.svg' });
 
   if (abierto) {
     // Auto-guardar al cambiar inputs
@@ -1159,6 +1170,7 @@ function renderResultados() {
   </div>`;
 
   cont.innerHTML = resumen + html;
+  if (window.twemoji) twemoji.parse(cont, { folder: 'svg', ext: '.svg' });
 }
 
 // ---- RANKING ----
