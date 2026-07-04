@@ -564,6 +564,16 @@ main {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .login-orb { animation: none !important; }
 }
+
+.elim-fase-toggle {
+  background: none; border: none; color: var(--gris4);
+  font-family: var(--cond); font-size: 0.75rem; letter-spacing: 1px;
+  cursor: pointer; padding: 0; margin-left: auto;
+  transition: color 160ms;
+}
+.elim-fase-toggle:hover { color: var(--verde); }
+.elim-fase-body { overflow: hidden; transition: max-height 400ms ease; }
+.elim-fase-body.colapsado { max-height: 0 !important; }
 </style>
 </head>
 <body>
@@ -1077,7 +1087,7 @@ function renderEliminatorias() {
   let html = `<div class="elim-header">
     <div class="elim-title">ELIMINATORIAS <span>2026</span></div>
     <div style="font-family:var(--cond);font-size:0.78rem;color:var(--gris4)">
-      Resultado a los 120 min sin penales · 3pts resultado · 5pts exacto
+      Resultado a los 90 min · 3pts resultado · 5pts exacto
     </div>
   </div>`;
 
@@ -1086,10 +1096,14 @@ function renderEliminatorias() {
     const disponibles = partidos.filter(p => p.local || p.visitante || elimPartidosCache[p.id]);
     if (disponibles.length === 0) return;
 
+    const colapsadoPorDefecto = fase === "16avos";
+    const bodyId = `fase-body-${fase}`;
     html += `<div class="elim-fase-section">
       <div class="elim-fase-header">
         <span class="elim-fase-label">${FASES_LABELS_D[fase]}</span>
+        ${colapsadoPorDefecto ? `<button class="elim-fase-toggle" onclick="toggleFase('${fase}')" id="toggle-${fase}">Ver 16avos ▼</button>` : ''}
       </div>
+      <div class="elim-fase-body ${colapsadoPorDefecto ? 'colapsado' : ''}" id="${bodyId}" style="max-height:${colapsadoPorDefecto ? '0' : '9999'}px">
       <div class="elim-partidos-grid">`;
 
     partidos.forEach((p, pidx) => {
@@ -1140,7 +1154,7 @@ function renderEliminatorias() {
       </div>`;
     });
 
-    html += `</div></div>`;
+    html += `</div></div></div>`;
   });
 
   html += `<div class="elim-save-bar">
@@ -1561,6 +1575,22 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch(e) { localStorage.removeItem("prode_user"); }
   }
 });
+
+window.toggleFase = function(fase) {
+  const body = document.getElementById(`fase-body-${fase}`);
+  const btn = document.getElementById(`toggle-${fase}`);
+  if (!body) return;
+  const colapsado = body.classList.contains('colapsado');
+  if (colapsado) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    body.classList.remove('colapsado');
+    if (btn) btn.textContent = 'Ocultar 16avos ▲';
+  } else {
+    body.style.maxHeight = '0';
+    body.classList.add('colapsado');
+    if (btn) btn.textContent = 'Ver 16avos ▼';
+  }
+};
 </script>
 </body>
 </html>
