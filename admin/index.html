@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — Prode Mundial 2026 · DGALH</title>
+<title>Admin — Prode Mundial 2026 - Vaquita -</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 <script type="module">
@@ -16,7 +16,7 @@
     projectId: "prode-mundial-2026-853a5",
     storageBucket: "prode-mundial-2026-853a5.firebasestorage.app",
     messagingSenderId: "311642186090",
-    appId: "1:311642186090:web:e1954c26cd41986eb5430b"
+    appId: "1:311642186090:web:d3bc1756ba862c45f7c513"
   };
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -41,7 +41,7 @@ input[type=text],input[type=password],input[type=number]{width:100%;background:v
 input:focus{border-color:var(--verde);}
 .btn{background:var(--verde);color:var(--negro);border:none;border-radius:6px;padding:10px 20px;font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:1px;cursor:pointer;transition:background .2s;}
 .btn:hover{background:var(--verde2);}
-.btn.danger{background:var(--rojo);color:#fff;}.btn.danger:hover{background:#00d084;}
+.btn.danger{background:var(--rojo);color:#fff;}.btn.danger:hover{background:#e53935;}
 .btn.warning{background:var(--naranja);color:#fff;}.btn.warning:hover{background:#f4511e;}
 .btn.secondary{background:var(--gris3);color:var(--blanco);}
 .btn:disabled{background:var(--gris3);color:var(--gris4);cursor:not-allowed;}
@@ -59,7 +59,7 @@ input:focus{border-color:var(--verde);}
 .res-inputs{display:flex;align-items:center;gap:6px;}
 .g-inp{width:50px;height:40px;background:var(--gris2);border:1px solid var(--gris3);border-radius:6px;color:var(--blanco);font-family:'Bebas Neue',cursive;font-size:1.3rem;text-align:center;outline:none;-moz-appearance:textfield;}
 .g-inp::-webkit-outer-spin-button,.g-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
-.g-inp:focus{border-color:var(--verde);}.g-inp.ok{border-color:var(--verde);background:#0a1f0a;}
+.g-inp:focus{border-color:var(--verde);}.g-inp.ok{border-color:var(--verde);background:#1f0505;}
 .grupo-title{font-family:'Bebas Neue',cursive;font-size:1.5rem;color:var(--verde);margin:24px 0 8px;letter-spacing:2px;}
 .save-all-bar{position:sticky;bottom:0;background:var(--negro);border-top:1px solid var(--gris3);padding:16px 0;text-align:center;margin-top:32px;}
 
@@ -121,7 +121,7 @@ input:focus{border-color:var(--verde);}
 .elim-gol{width:50px;height:38px;background:var(--gris2);border:1px solid var(--gris3);border-radius:6px;color:var(--blanco);font-family:'Bebas Neue',cursive;font-size:1.2rem;text-align:center;outline:none;-moz-appearance:textfield;}
 .elim-gol::-webkit-outer-spin-button,.elim-gol::-webkit-inner-spin-button{-webkit-appearance:none;}
 .elim-gol:focus{border-color:var(--verde);}
-.elim-gol.ok{border-color:var(--verde);background:#0a1f0a;}
+.elim-gol.ok{border-color:var(--verde);background:#1f0505;}
 .btn-guardar-elim-card{background:var(--verde);color:var(--negro);border:none;border-radius:6px;padding:7px 16px;font-family:'Bebas Neue',cursive;font-size:0.95rem;letter-spacing:1px;cursor:pointer;transition:background .2s;white-space:nowrap;}
 .btn-guardar-elim-card:hover{background:var(--verde2);}
 .elim-save-ok{color:var(--verde);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;margin-top:6px;}
@@ -200,9 +200,9 @@ input:focus{border-color:var(--verde);}
       <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;color:var(--gris4);margin-bottom:16px;line-height:1.5;">
         Página pública donde todos los participantes pueden ver las predicciones de todos.
       </p>
-      <div class="link-publico">https://dgalh-service.github.io/prode2026/predicciones.html</div>
+      <div class="link-publico">https://prodemundial2026ba-droid.github.io/prode/predicciones.html</div>
       <button class="btn secondary" style="padding:8px 16px;font-size:0.85rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;"
-        onclick="navigator.clipboard.writeText('https://dgalh-service.github.io/prode2026/predicciones.html');toast('✓ Link copiado')">
+        onclick="navigator.clipboard.writeText('https://prodemundial2026ba-droid.github.io/prode/predicciones.html');toast('✓ Link copiado')">
         Copiar link
       </button>
     </div>
@@ -678,14 +678,20 @@ window.guardarPartidoElim = async (pid) => {
   const visitante = document.getElementById(`vis-${pid}`).value.trim();
   const glVal = document.getElementById(`gl-${pid}`).value;
   const gvVal = document.getElementById(`gv-${pid}`).value;
-  const gl_real = glVal !== "" ? parseInt(glVal) : null;
-  const gv_real = gvVal !== "" ? parseInt(gvVal) : null;
 
-  // Mantener estado cerrado si ya existe
+  // Mantener todos los datos existentes — solo pisar lo que cambió
   const existing = elimCache[pid] || {};
   const cerrado = existing.cerrado || false;
 
-  const datos = { local, visitante, gl_real, gv_real, cerrado };
+  const datos = {
+    ...existing,  // preservar TODO lo que ya había (incluye resultados, hora, etc.)
+    local,
+    visitante,
+    cerrado,
+    // Solo actualizar resultado si se ingresó algo — si está vacío, mantener el anterior
+    gl_real: glVal !== "" ? parseInt(glVal) : (existing.gl_real !== undefined ? existing.gl_real : null),
+    gv_real: gvVal !== "" ? parseInt(gvVal) : (existing.gv_real !== undefined ? existing.gv_real : null),
+  };
   try {
     await setDoc(doc(window._db, "elim_partidos", pid), datos);
     elimCache[pid] = datos;
