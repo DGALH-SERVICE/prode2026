@@ -1096,7 +1096,7 @@ function renderEliminatorias() {
     const disponibles = partidos.filter(p => p.local || p.visitante || elimPartidosCache[p.id]);
     if (disponibles.length === 0) return;
 
-    const colapsadoPorDefecto = fase === "16avos" || fase === "octavos";
+    const colapsadoPorDefecto = fase === "16avos" || fase === "octavos" || fase === "cuartos" || fase === "semis";
     const bodyId = `fase-body-${fase}`;
     html += `<div class="elim-fase-section">
       <div class="elim-fase-header">
