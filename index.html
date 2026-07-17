@@ -1096,12 +1096,12 @@ function renderEliminatorias() {
     const disponibles = partidos.filter(p => p.local || p.visitante || elimPartidosCache[p.id]);
     if (disponibles.length === 0) return;
 
-    const colapsadoPorDefecto = fase === "16avos";
+    const colapsadoPorDefecto = fase === "16avos" || fase === "octavos";
     const bodyId = `fase-body-${fase}`;
     html += `<div class="elim-fase-section">
       <div class="elim-fase-header">
         <span class="elim-fase-label">${FASES_LABELS_D[fase]}</span>
-        ${colapsadoPorDefecto ? `<button class="elim-fase-toggle" onclick="toggleFase('${fase}')" id="toggle-${fase}">Ver 16avos ▼</button>` : ''}
+        ${colapsadoPorDefecto ? `<button class="elim-fase-toggle" onclick="toggleFase('${fase}')" id="toggle-${fase}">Ver ${FASES_LABELS_D[fase]} ▼</button>` : ''}
       </div>
       <div class="elim-fase-body ${colapsadoPorDefecto ? 'colapsado' : ''}" id="${bodyId}" style="max-height:${colapsadoPorDefecto ? '0' : '9999'}px">
       <div class="elim-partidos-grid">`;
@@ -1577,6 +1577,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.toggleFase = function(fase) {
+  const LABELS = {"16avos":"16avos de Final","octavos":"Octavos de Final",
+    "cuartos":"Cuartos de Final","semis":"Semifinales","tercero":"3er Puesto","final":"Final"};
+  const label = LABELS[fase] || fase;
   const body = document.getElementById(`fase-body-${fase}`);
   const btn = document.getElementById(`toggle-${fase}`);
   if (!body) return;
@@ -1584,11 +1587,11 @@ window.toggleFase = function(fase) {
   if (colapsado) {
     body.style.maxHeight = body.scrollHeight + 'px';
     body.classList.remove('colapsado');
-    if (btn) btn.textContent = 'Ocultar 16avos ▲';
+    if (btn) btn.textContent = `Ocultar ${label} ▲`;
   } else {
     body.style.maxHeight = '0';
     body.classList.add('colapsado');
-    if (btn) btn.textContent = 'Ver 16avos ▼';
+    if (btn) btn.textContent = `Ver ${label} ▼`;
   }
 };
 </script>
